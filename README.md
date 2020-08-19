@@ -1,5 +1,8 @@
 # aws-clouformation
 
+![Alt text](images/logo.png?raw=true "Title")
+
+
 ## What is AWS CloudFormation?
 
 AWS CloudFormation is a service that gives developers and businesses an easy way to create a collection of related AWS and third party resources and provision them in an orderly and predictable fashion.
