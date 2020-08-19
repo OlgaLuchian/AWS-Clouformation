@@ -16,3 +16,7 @@ Official documentation link: https://aws.amazon.com/cloudformation/#:~:text=AWS%
 
 This template will provision S3 bucket with tags applied and versioning enabled. 
 
+* securitygroup.yaml
+
+This template will create a security group with tags applied and will allow https only. 
+
