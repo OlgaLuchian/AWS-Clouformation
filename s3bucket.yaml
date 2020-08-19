@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources: 
+    MyBucket: 
+        Type:  AWS::S3::Bucket
+        Properties: 
+            BucketName: cloud-formation-olgatest-bucket 
+            Tags: 
+              - Key: "Team"
+                Value: "Dev"
+              - Key: "Owner"
+                Value: OlgaL
+            VersioningConfiguration:
+                Status: Enabled
