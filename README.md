@@ -12,11 +12,11 @@ AWS CloudFormation is a service that gives developers and businesses an easy way
 
 ## Templates
 
-* s3bucket.yaml
+* [s3bucket.yaml](s3bucket.yaml)
 
 This template will provision S3 bucket with tags applied and versioning enabled. 
 
-* securitygroup.yaml
+* [securitygroup.yaml](securitygroup.yaml)
 
 This template will create a security group with tags applied and will allow https only. 
 
