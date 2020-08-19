@@ -3,11 +3,11 @@ Resources:
     MyBucket: 
         Type:  AWS::S3::Bucket
         Properties: 
-            BucketName: cloud-formation-olgatest-bucket 
+            BucketName: cloud-formation-test123-bucket 
             Tags: 
               - Key: "Team"
                 Value: "Dev"
               - Key: "Owner"
-                Value: OlgaL
+                Value: "Example"
             VersioningConfiguration:
                 Status: Enabled
