@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+    WebInstance: 
+        Type: AWS::EC2::Instance
+        Properties:
+            InstanceType: t2.micro
+            ImageId:                       # Enter Amazon Image ID
+            KeyName:                       # Enter your key name
+            BlockDeviceMappings:
+              - DeviceName: /dev/xvda
+                Ebs:
+                  VolumeType: gp2
+                  VolumeSize: '8'
+                  DeleteOnTermination: 'false'
+                  Encrypted: 'true'
+            SecurityGroupIds:
+              -                            # Enter your Security Group ID
+            SubnetId:                      # Enter your Subnet ID
+            Tags:
+              - Key: Name
+                Value: Example_Instance
+              - Key: Type
+                Value: Example_Instance
+
+
+                           

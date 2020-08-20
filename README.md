@@ -14,9 +14,17 @@ AWS CloudFormation is a service that gives developers and businesses an easy way
 
 * [s3bucket.yaml](s3bucket.yaml)
 
-This template will provision S3 bucket with tags applied and versioning enabled. 
+This template will provision S3 bucket with tags applied and versioning enabled.
 
 * [security_group.yaml](security_group.yaml)
 
-This template will create a security group with tags applied and will allow https only. 
+This template will create a security group with tags applied and will allow https only.
+
+* [ec2_instance.yaml](ec2_instance.yaml)
+
+This template will create an EC2 Instance with the following properties:  
+
+        - t2.micro
+        - Encrypted EBS volume
+        - Tags applied
 
