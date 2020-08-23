@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  MyBucket:   
+    Type: AWS::S3::Bucket
+    Properties: 
+      BucketName: "cloudformation-olga-test-bucket2"
+      VersioningConfiguration:
+        Status: Enabled
+      Tags:
+      - Key: "Team"
+        Value: "Dev"
+      - Key: "Env"
+        Value: "Test"
+      

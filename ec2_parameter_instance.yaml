@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: This template creates an EC2 Instance with parameters
+Parameters:
+  # EĆ2 Type parameter
+  EC2Type:
+    Type: String
+  # Subnet parameter
+  SubnetId:
+    Type: String
+  # AMI parameter
+  AMIID:
+    Type: String
+  # SSH KEY parameter
+  SSHKEY:
+    Type: String
+  # Security Group parameter
+  SecurityGroupID:
+    Type: String
+  # Team parameter
+  TeamTagValue:
+    Type: String
+  # Owner parameter
+  OwnerTagValue:
+    Type: String
+  # Volume size parameter
+  VolumeSize:
+    Type: String
+
+Resources:
+  MyEC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType:
+        Ref: EC2Type
+      ImageId:
+        Ref: AMIID
+      KeyName:
+        Ref: SSHKEY
+      BlockDeviceMappings:
+        - DeviceName: /dev/xvda
+          Ebs:
+            VolumeType: gp2
+            VolumeSize: 
+              Ref: VolumeSize
+            DeleteOnTermination: "false"
+            Encrypted: "true"
+      SubnetId: 
+        Ref: SubnetId             
+      Tags:
+        - Key: "Team"
+          Value:
+            Ref: TeamTagValue
+        - Key: "Owner"
+          Value:
+            Ref: OwnerTagValue
