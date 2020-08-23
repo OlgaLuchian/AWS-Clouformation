@@ -28,7 +28,7 @@ This template will create an EC2 Instance with the following properties:
     - Encrypted EBS volume
     - Tags applied
 
-* [ec2_parameter_instance.yaml](ec2_parametrized_instance.yaml)
+* [ec2_parameter_instance.yaml](ec2_parameter_instance.yaml)
 
 This template will create an EC2 Instance using parameters to pass values to the template when creating or updating a stack so that you can customize each stack deployment. Provide the following values for the template.
 
