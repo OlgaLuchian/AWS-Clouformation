@@ -32,12 +32,20 @@ This template will create an EC2 Instance with the following properties:
 
 This template will create an EC2 Instance using parameters to pass values to the template when creating or updating a stack so that you can customize each stack deployment. Provide the following values for the template.
 
-    - EC2 Type   
-    - Subnet ID
-    - AMI
-    - SSH KEY
+    - EC2 Type          EC2-Instance Type
+    - Subnet ID         SubnetId to which the EC2 should be launched
+    - AMI               Amazon Image ID
+    - SSH KEY           SSH Key name for SSH Access
     - Security Group
-    - Team 
-    - Owner
-    - Volume size
+    - Team Tag          Value for Team Tag key
+    - Owner             
+    - Root Volume size  Size of the root volume
+
+* [ec2_sg.yaml](ec2_sg.yaml)
+
+CloudFormation Template that creates EC2-Instance and Security Group with Tags, and requires the following parameteres.
+
+Note: modify the file with your inputs.
+
+
 
