@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+    MySecurityGroup:
+        Type: AWS::EC2::SecurityGroup
+        Properties:
+            GroupDescription: "CloudFormationSecurityGroup"
+            GroupName: "CloudFormationSecurityGroup"
+            VpcId: "vpc-02f71d0bdf8a92a25"
+            SecurityGroupIngress:
+            - CidrIp: "0.0.0.0/0"
+              FromPort: 22
+              ToPort: 22
+              IpProtocol: "tcp"
+              Description: "SSH from 0.0.0.0/0"
+            - CidrIp: "0.0.0.0/0"
+              FromPort: 80
+              ToPort: 80
+              IpProtocol: "tcp"
+              Description: "HTTP from 0.0.0.0/0"
