@@ -32,24 +32,3 @@ Resources:
          Value: "Infra"
        - Key: "Env"
          Value: "Test"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1 Template that creates :
-    Internet Gateway
-    VPC
-    2 Subnets  - both Public
-    1 Route Table with route to internet, and subnet association
-    Also make sure all the resources that gets created have the proper tags:
-    Tags :     Team= Infra ,  Env = Test
