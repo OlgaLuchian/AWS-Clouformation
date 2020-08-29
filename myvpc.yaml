@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+    myInternetGateway:
+        Type: AWS::EC2::InternetGateway
+        Properties:
+          Tags:
+          - Key: "Team"
+            Value: "Infra"
+          - Key: "Env"
+            Value: "Test"
+    myVPCInstance:
+        Type: AWS::EC2::VPC
+        Properties:
+            CidrBlock: 10.0.0.0/16
+            EnableDnsSupport: 'false'
+            EnableDnsHostnames: 'false'
+            InstanceTenancy: default
+            Tags:
+             - Key: "Team"
+               Value: "Infra"
+             - Key: "Env"
+               Value: "Test"
+    mySubnet:
+     Type: AWS::EC2::Subnet
+     Properties:
+       VpcId:
+         Ref: myVPC
+       CidrBlock: 10.0.0.0/24
+       AvailabilityZone: "us-east-1a"
+       Tags:
+       - Key: "Team"
+         Value: "Infra"
+       - Key: "Env"
+         Value: "Test"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1 Template that creates :
+    Internet Gateway
+    VPC
+    2 Subnets  - both Public
+    1 Route Table with route to internet, and subnet association
+    Also make sure all the resources that gets created have the proper tags:
+    Tags :     Team= Infra ,  Env = Test
