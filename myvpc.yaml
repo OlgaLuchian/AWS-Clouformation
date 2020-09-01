@@ -18,3 +18,16 @@ Resources:
              Value: "Infra"
            - Key: "Env"
              Value: "Test"
+    mySubnet:
+     Type: AWS::EC2::Subnet
+     Properties:
+       VpcId:
+         Ref: myVPCInstance
+       CidrBlock: 10.0.0.0/16
+       AvailabilityZone: "us-east-1a"
+       Tags:
+       - Key: "Team"
+         Value: "Infra"
+       - Key: "Env"
+         Value: "Test"
+    
