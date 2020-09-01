@@ -1,47 +1,88 @@
 AWSTemplateFormatVersion: "2010-09-09"
+# Parameters Section
+Parameters:
+  # Team Tag Value
+  TeamTagValue:
+    Type: String
+    Default: "Developer"
+    AllowedValues:
+      - Developer
+      - Operations
+      - DevOps
+  # Env Tag Value
+  EnvTagValue:
+    Type: String
+    Default: "Dev"
+    AllowedValues:
+      - Dev
+      - Test
+      - Prod
+
+# Resources Section      
 Resources:
+    # Internet Gateway
     myInternetGateway:
-        Type: AWS::EC2::InternetGateway
-        Properties:
-          Tags:
-          - Key: "Team"
-            Value: "Infra"
-          - Key: "Env"
-            Value: "Test"
+      Type: AWS::EC2::InternetGateway
+      Properties:
+        Tags:
+        - Key: "Team"
+          Value: 
+            Ref: TeamTagValue
+        - Key: "Env"
+          Value: 
+            Ref: EnvTagValue
+    # VPC 
     myVPCInstance:
       Type: AWS::EC2::VPC
       Properties:
-          CidrBlock: 10.0.0.0/16
-          InstanceTenancy: default
-          Tags:
-           - Key: "Team"
-             Value: "Infra"
-           - Key: "Env"
-             Value: "Test"
+        CidrBlock: 10.0.0.0/16
+        InstanceTenancy: default
+        Tags:
+        - Key: "Team"
+          Value: 
+            Ref: TeamTagValue
+        - Key: "Env"
+          Value:
+            Ref: EnvTagValue
+    # Gateway
+    AttachGateway:
+      Type: AWS::EC2::VPCGatewayAttachment
+      Properties:
+        VpcId:
+          Ref: myVPCInstance
+        InternetGatewayId:
+          Ref: myInternetGateway
+    # Subnet 1
     mySubnet:
-     Type: AWS::EC2::Subnet
-     Properties:
-       VpcId:
-         Ref: myVPCInstance
-       CidrBlock: 10.0.0.0/16
-       AvailabilityZone: "us-east-1a"
-       Tags:
-       - Key: "Team"
-         Value: "Infra"
-       - Key: "Env"
-         Value: "Test"
-    mySubnet:
-     Type: AWS::EC2::Subnet
-     Properties:
-       VpcId:
-         Ref: myVPCInstance
-       CidrBlock: 10.0.0.0/16
-       AvailabilityZone: "us-east-1a"
-       Tags:
-       - Key: "Team"
-         Value: "Infra"
-       - Key: "Env"
-         Value: "Test"
+      Type: AWS::EC2::Subnet
+      Properties:
+        VpcId:
+          Ref: myVPCInstance
+        CidrBlock: 10.0.1.0/24
+        AvailabilityZone: "us-east-1a"
+        Tags:
+        - Key: "Team"
+          Value: 
+            Ref: TeamTagValue
+        - Key: "Env"
+          Value:
+            Ref: EnvTagValue
+    # Subnet 2
+    mySubnet2:
+      Type: AWS::EC2::Subnet
+      Properties:
+        VpcId:
+          Ref: myVPCInstance
+        CidrBlock: 10.0.2.0/24
+        AvailabilityZone: "us-east-1b"
+        Tags:
+        - Key: "Team"
+          Value:
+            Ref: TeamTagValue
+        - Key: "Env"
+          Value:
+            Ref: EnvTagValue
+    # Route Table
     myRouteTable:
       Type: AWS::EC2::RouteTable
       Properties:
@@ -49,11 +90,14 @@ Resources:
           Ref: myVPCInstance
         Tags:
         - Key: "Team"
-          Value: "Infra"
+          Value:
+            Ref: TeamTagValue
         - Key: "Env"
-          Value: "Test"
+          Value:
+            Ref: EnvTagValue
         - Key: "Name"
           Value: "MyRouteTable"
+    # Route
     myRoute:
       Type: AWS::EC2::Route
       DependsOn: myInternetGateway
@@ -63,3 +107,19 @@ Resources:
          DestinationCidrBlock: 0.0.0.0/0
          GatewayId:
            Ref: myInternetGateway
+    # Subnet Route Table Association
+    mySubnetRouteTableAssociation:
+      Type: AWS::EC2::SubnetRouteTableAssociation
+      Properties:
+        SubnetId:
+          Ref: mySubnet2
+        RouteTableId:
+          Ref: myRouteTable
+    # Subnet Route Tabel Association 2 
+    mySubnetRouteTableAssociation2:
+      Type: AWS::EC2::SubnetRouteTableAssociation
+      Properties:
+        SubnetId:
+          Ref: mySubnet2
+        RouteTableId:
+          Ref: myRouteTable
