@@ -62,8 +62,6 @@ CloudFormation Template will create the following resources:
 
 It will take inputs from the following parameters:
 
-Parameters section:
-
     - Team Tag Value
     - Env Tag Value
     - Subnet 1 Cidr Block
