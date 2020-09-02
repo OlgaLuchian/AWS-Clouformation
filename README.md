@@ -62,12 +62,10 @@ CloudFormation Template will create the following resources:
 
 It will take inputs from the following parameters:
 
-    - Team Tag Value
-    - Env Tag Value
-    - Subnet 1 Cidr Block
-    - Subnet 2 Cidr Block
-
-
+    - TeamTagValue
+    - EnvTagValue
+    - Subnet1Cidr
+    - Subnet2Cidr
 
 Note: modify the file with your inputs.
 
