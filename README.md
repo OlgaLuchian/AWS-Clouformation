@@ -45,6 +45,32 @@ This template will create an EC2 Instance using parameters to pass values to the
 
 CloudFormation Template that creates EC2-Instance and Security Group with Tags, and requires the following parameteres.
 
+* [myvpc.yaml](myvpc.yaml)
+
+CloudFormation Template will create the following resources:
+
+    - Internet Gateway
+    - VPC
+    - Gateway Attachment
+    - Subnet 1
+    - Subnet 2
+    - Route Table
+    - Route 
+    - Subnet Route Table Association 1
+    - Subnet Route Table Association 2
+
+
+It will take inputs from the following parameters:
+
+Parameters section:
+
+    - Team Tag Value
+    - Env Tag Value
+    - Subnet 1 Cidr Block
+    - Subnet 2 Cidr Block
+
+
+
 Note: modify the file with your inputs.
 
 
