@@ -18,6 +18,16 @@ Parameters:
       - Test
       - Prod
 
+  # Subnet 1 Cidr Block
+  Subnet1Cidr:
+    Type: String
+    Default: 10.0.1.0/24
+
+  # Subnet 2 Cidr Block
+  Subnet2Cidr:
+    Type: String
+    Default: 10.0.2.0/24
+
 # Resources Section      
 Resources:
     # Internet Gateway
@@ -25,6 +35,8 @@ Resources:
       Type: AWS::EC2::InternetGateway
       Properties:
         Tags:
+        - Key: "Name"
+          Value: "myInternetGateway"
         - Key: "Team"
           Value: 
             Ref: TeamTagValue
@@ -38,6 +50,8 @@ Resources:
         CidrBlock: 10.0.0.0/16
         InstanceTenancy: default
         Tags:
+        - Key: "Name"
+          Value: "myVPCInstance"
         - Key: "Team"
           Value: 
             Ref: TeamTagValue
@@ -58,11 +72,14 @@ Resources:
       Properties:
         VpcId:
           Ref: myVPCInstance
-        CidrBlock: 10.0.1.0/24
+        CidrBlock:
+          Ref: Subnet1Cidr
         AvailabilityZone: "us-east-1a"
         Tags:
+        - Key: "Name"
+          Value: "mySubnet1"
         - Key: "Team"
-          Value: 
+          Value:
             Ref: TeamTagValue
         - Key: "Env"
           Value:
@@ -73,9 +90,12 @@ Resources:
       Properties:
         VpcId:
           Ref: myVPCInstance
-        CidrBlock: 10.0.2.0/24
+        CidrBlock:
+          Ref: Subnet2Cidr
         AvailabilityZone: "us-east-1b"
         Tags:
+        - Key: "Name"
+          Value: "mySubnet2"
         - Key: "Team"
           Value:
             Ref: TeamTagValue
@@ -89,6 +109,8 @@ Resources:
         VpcId:
           Ref: myVPCInstance
         Tags:
+        - Key: "Name"
+          Value: "myRouteTable"
         - Key: "Team"
           Value:
             Ref: TeamTagValue
