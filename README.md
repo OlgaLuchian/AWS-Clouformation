@@ -1,4 +1,4 @@
-# aws-clouformation
+# AWS-Cloudformation
 
 ![Alt text](images/logo.png?raw=true "Title")
 
