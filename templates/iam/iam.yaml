@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: 2010-09-09
+# Parameters
+Parameters:
+    UserName:
+        Type: String
+# Resources
+Resources:
+    User1:
+      Type: AWS::IAM::User
+      Properties:
+        UserName:
+          Ref: UserName
+        Tags:
+        - Key: "Team"
+          Value: "Developer"
+        - Key: "Env"
+          Value: "Test"
+        ManagedPolicyArns:
+          - "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"   
