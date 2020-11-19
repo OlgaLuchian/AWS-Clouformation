@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+# Define Parameters
+Parameters:
+  MyFirstBucketName:
+    Type: String
+  
+  MySecondBucketName:
+    Type: String
+
+# Tags
+OwnerValue:
+  Type: String
+TeamValue:
+  Type: String
+AppValue:
+  Type: String
+
+SecondBucketOwnerValue:
+  Type: String
+SecondBucketTeamValue:
+  Type: String
+SecondBucketAppValue:
+  Type: String                                                                       
+
+# Define Resources
+Resources:
+  # MyFirst Bucket
+  MyFirstBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:  !Ref  MyFirstBucketName
+      Tags:
+      - Key: Owner
+        Value: !Ref OwnerValue
+      - Key: Team
+        Value: !Ref TeamValue
+      - Key: App
+        Value: !Ref AppValue
+  
+  # MySecond Bucket
+  MySecondBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:  !Ref  MySecondBucketName
+      Tags:
+      - Key: Owner
+        Value: !Ref SecondBucketOwnerValue                                                      
+      - Key: Team
+        Value: !Ref SecondBucketTeamValue
+      - Key: App
+        Value: !Ref SecondBucketAppValue
