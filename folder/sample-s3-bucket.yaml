@@ -1,0 +1,73 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: This template provisions a sample s3 bucket
+
+# Parameters
+Parameters:
+  
+  SampleBucketName:
+    Type: String
+    Default: ''
+  SampleBucketName2:
+    Type: String
+    Default: ''
+    
+  TeamValue:
+    Type: String
+    Default: 'dev'
+  OwnerValue:
+    Type: String
+    Default: 'olga'
+  S3Versioning:
+    Type: String
+    Default: 'Enabled'
+    AllowedValues:
+      - Enabled
+      - Suspended
+
+
+# Resources
+Resources:
+
+# S3 Bucket
+  SampleS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref SampleBucketName
+      VersioningConfiguration:
+        Status: !Ref S3Versioning
+      Tags:
+      - Key: team
+        Value: !Ref TeamValue
+      - Key: owner
+        Value: !Ref OwnerValue
+
+
+# S3 Bucket - 2
+  SampleS3Bucket2:
+      DependsOn:
+      - SampleS3Bucket
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: !Ref SampleBucketName2
+        VersioningConfiguration:
+          Status: !Ref S3Versioning
+        Tags:
+        - Key: team
+          Value: !Ref TeamValue
+        - Key: owner
+          Value: !Ref OwnerValue
+# Outputs
+Outputs:
+  # SampleBucketName
+  SampleBucketName:
+    Description: S3 Bucket Name
+    Value: !Ref SampleS3Bucket
+  SampleBucketName2:
+    Description: S3 Bucket Name and Region
+    Value:
+      Fn::Join:
+      - ''
+      - - 'bucket:'
+        - Ref: AWS::Region
+        - ':'
+        - Ref: SampleS3Bucket2
