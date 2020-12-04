@@ -1,0 +1,69 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Reusable Template for Security Group
+
+# Define Parameters
+Parameters:
+  # Default VPC ID
+  DefaultVPCId:
+    Type: String
+    Default: ''
+    Description: VPC ID
+
+  # WPSecurityGroup Name
+  WPSGName:
+    Type: String
+    Default: ''
+    Description: Security Group Name
+
+  # My Network IP
+  MyNetworkIp:
+    Type: String
+    Default: ''
+    Description: Network CIDR for SSH Connection
+  
+  # Required Tags
+    # Team Key
+    TeamTagKey:
+      Type: String
+      Default: Team
+    # Team Value
+    TeamTagValue:
+      Type: String
+      Default: infra
+    # Env Key
+    EnvTagKey:
+      Type: String
+      Default: Env
+    # Env Value
+    EnvTagKey:
+      Type: String
+      Default: dev
+  
+
+# Define Resources
+Resources:
+  # Wordpress Security Group
+  WPSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Wordpress Security Group
+      GroupName: !Ref WPSGName
+      VpcId: !Ref DefaultVPCId
+      SecurityGroupIngress:
+        - CidrIp: !Ref MyNetworkIp
+          FromPort: 22
+          ToPort: 22
+          IpProtocol: tcp
+      Tags:
+        - Key: Name
+          Value: !Ref WPSGName
+        - Key: !Ref TeamTagKey
+          Value: !Ref TeamTagValue
+        - Key: !Ref EnvTagKey
+          Value: !Ref EnvTagValue
+
+# Define Outputs
+Outputs:
+  WPSGName:
+    Description: Wordpress Security Name
+    Value: !Ref WPSecurityGroup
